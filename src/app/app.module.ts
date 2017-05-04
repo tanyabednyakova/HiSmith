@@ -10,7 +10,9 @@ import { SearchNewsComponent } from './search-news/search-news.component';
 import { ListNewsComponent } from './list-news/list-news.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { SearchComponent } from './search/search.component';
+import { NavComponent } from './nav/nav.component';
+import { NewsCardComponent } from './news-card/news-card.component';
+
 
 @NgModule({
   declarations: [
@@ -20,9 +22,8 @@ import { SearchComponent } from './search/search.component';
     ListNewsComponent,
     FooterComponent,
     HeaderComponent,
-    SearchComponent
-
-
+    NavComponent,
+    NewsCardComponent
   ],
   imports: [
     BrowserModule,
