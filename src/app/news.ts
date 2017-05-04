@@ -20,4 +20,8 @@ export class News {
   {
     Object.assign( this, values );
   }
+
+  // search(wrord: string[]): News {
+  //   return new News;
+  // }
 }
