@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchNewsService} from "../search-news.service";
 
 @Component({
   selector: 'app-search-news',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchNewsComponent implements OnInit {
 
-  constructor() { }
+  searchWords="";
+  count: number;
+  constructor(private searchNewsService: SearchNewsService) { }
+
 
   ngOnInit() {
-  }
 
+  }
+searchNews() {
+  this.searchNewsService.SearchNews(this.searchWords).subscribe((data) => {this.count=data});
+  console.log(this.count);
+}
+
+  // submit(searchWords){
+  //   this.searchNewsService.SearchNews(searchWords);
+  //    // .subscribe((data) => {this.receivedUser=data; this.done=true;});
+  // }
 }

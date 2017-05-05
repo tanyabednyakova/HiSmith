@@ -1,9 +1,32 @@
-<ul>
-  <li>
 
+ <table class="table table-striped">
+   <!--<tr>
+     <th>№</th>
+     <th>Автор</th>
+     <th>Новость</th>
+     <th>Изображения</th>
+     <th>Дата публикации</th>
+     <th>Лайки</th>
+   </tr>-->
+   <tr *ngFor="let news of listNews">
+     <td>
+      {{news.id}}
+     </td>
+     <td>
+      {{news.writer}}
+     </td>
+     <td>
+       {{news.text}}
+     </td>
+     <td>
+       {{news.list_photo}}
+     </td>
+     <td>
+       {{news.published}}
+     </td>
+     <td>
+      {{news.liks}}
+     </td>
+   </tr>
+ </table>
 
-  </li>
-</ul>
-TODO навигация
-TODO компонет новость, список из компонентов
-TODO сервисы

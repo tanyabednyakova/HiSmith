@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchNewsService} from "../search-news.service";
+import {News} from "../news";
 
 @Component({
   selector: 'app-news-card',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsCardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private searchNewsService: SearchNewsService) {}
+
+  news: News;
+  //id: number;
 
   ngOnInit() {
+    this.news=this.searchNewsService.showNews(0);
   }
 
 }

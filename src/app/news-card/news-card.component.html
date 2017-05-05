@@ -1,3 +1,22 @@
-<p>
-  news-card works!
-</p>
+<div class="card main-card d-flex flex-row justify-content-between" *ngIf="news">
+
+  <div>
+    {{news.id}}
+  </div>
+  <div>
+    {{news.writer}}
+  </div>
+  <div>
+    {{news.text}}
+  </div>
+  <div>
+    // список фотографий??
+  </div>
+  <div>
+    {{news.publish}}
+  </div>
+  <div>
+    {{news.liks}}
+  </div>
+
+</div>

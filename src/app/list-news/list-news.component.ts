@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {SearchNewsService} from "../search-news.service";
+import {News} from "../news";
+
 
 @Component({
   selector: 'app-list-news',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListNewsComponent implements OnInit {
 
-  constructor() { }
+  listNews: News []=[];
 
-  ngOnInit() {
+  constructor(private searchNewsService: SearchNewsService) {}
+
+
+  ngOnInit(){
+      this.listNews = this.searchNewsService.getListNews();
   }
 
 }

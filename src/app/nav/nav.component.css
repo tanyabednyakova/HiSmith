@@ -1,0 +1,13 @@
+nav {
+  margin-top: 2rem;
+  color: #025aa5;
+  border: thin dotted;
+}
+
+nav a {
+  color: #025aa5;
+}
+
+nav a:hover{
+  text-decoration: underline;
+}

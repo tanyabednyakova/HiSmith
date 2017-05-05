@@ -1,9 +1,11 @@
-<div class="search-form card">
+<div class="main-card card">
   <form class="">
     <div class="form-group">
     <label for="search">Введите слова для поиска</label>
-    <input type="text" id="search" class="form-control"><br>
-    <input type="submit" class="btn-secondary btn btn-lg" value="найти">
+    <input type="text" id="search" class="form-control" [(ngModel)]="searchWords" name="searchWords"><br>
+    <input type="submit" class="btn-secondary btn btn-lg" value="найти" (click)="searchNews(searchWords)">
     </div>
   </form>
 </div>
+
+// TODO показать сообшение, что данный отправлены
