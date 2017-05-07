@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchNewsService} from "../search-news.service";
+import {News} from "../news";
+import {TestApi} from "../TestApi";
 
 @Component({
   selector: 'app-search-news',
@@ -10,6 +12,7 @@ export class SearchNewsComponent implements OnInit {
 
   searchWords="";
   count: number;
+  user: Array<TestApi>[]=null;
   constructor(private searchNewsService: SearchNewsService) { }
 
 
@@ -17,8 +20,22 @@ export class SearchNewsComponent implements OnInit {
 
   }
 searchNews() {
-  this.searchNewsService.SearchNews(this.searchWords).subscribe((data) => {this.count=data});
-  console.log(this.count);
+  this.searchNewsService.SearchNews(this.searchWords);//.subscribe((data) => {this.count=data});
+  //let user: TestApi = JSON.parse(this.searchNewsService.str);
+   //console.log(user.id);
+   //console.log(user.first_name);
+  //console.log(user.last_name);
+  if(this.searchNewsService.str) {
+   this.user=this.searchNewsService.str;
+    // работатает!
+    for (let entry of this.searchNewsService.str) {
+      console.log(entry['id']);
+      console.log(entry['first_name']);
+    }
+   // console.log(this.searchNewsService.str);
+  }
+
+  //console.log(this.searchNewsService);
 }
 
   // submit(searchWords){
