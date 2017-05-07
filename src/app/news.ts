@@ -8,20 +8,12 @@ export class News {
   // текст новости
   text: string = '';
   // список фотографий
-  list_photo: string[];
+  //list_photo: string[];
   // дата публикации
   published: string;
-  // TODO тип данных для работы с датой!
-  // TODO добавить юниттест
-
-
 
   constructor( values: Object = {} )
   {
     Object.assign( this, values );
   }
-
-  // search(wrord: string[]): News {
-  //   return new News;
-  // }
 }

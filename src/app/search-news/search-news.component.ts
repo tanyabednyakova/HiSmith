@@ -24,7 +24,7 @@ searchNews() {
   this.searchNewsService.SearchNews(this.searchWords);//.subscribe((data) => {this.count=data});
 
   if(this.searchNewsService.str) {
-    console.log(this.searchNewsService.test['query']);
+    console.log("add :" + this.searchNewsService.test['id']);
 
     this.user=this.searchNewsService.str;
     for (let entry of this.searchNewsService.str) {

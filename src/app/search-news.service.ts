@@ -13,67 +13,59 @@ export class SearchNewsService {
 
   constructor(private http: Http, private jsonp: Jsonp) { }
 
-  private listNews: News[] = [
-  { id: 1,
-    liks: 4,
-    writer: 'Ivanov',
-    text: 'много букв',
-    list_photo: ['img.jpg', 'img2.jpg'],
-    published: '21.04.2013'
-  },
+  private listNews: Array<News>=[];
+  //listNews: News[] = [];
 
-  { id: 2,
-    liks: 6,
-    writer: 'Petrov',
-    text: 'много букв очень много',
-    list_photo: ['img.jpg', 'img2.jpg'],
-    published: '20.05.2015'
-  },
-
-  { id: 3,
-    liks: 9,
-    writer: 'Orlov',
-    text: 'много букв много букв много букв',
-    list_photo: ['img.jpg', 'img2.jpg'],
-    published: '10.02.2010'
-  }
-];
 
   getListNews(): News[] {
     return this.listNews;
   }
 
+  _listNews: Array<Object>[];
   str: Array<TestApi>[];
   test: Array<Object>[];
+
   addNews(news: News){
     this.listNews.push(news);
   }
 
   SearchNews(searchWords: string)
   {
-    //this.listNews[0].text=searchWords;
-
-    // рабочий запрос!
-    //let url:string = 'https://api.vk.com/method/users.get?user_id=210700286&v=5.52&callback=JSONP_CALLBACK';
-
-    //ошибка - сервер не дает достпа
+    // результаты поиска по статусам.
+    // API в контакте
     let url:string='https://api.vk.com/method/newsfeed.search?q='+searchWords+
       '&access_token=50a1921650a1921650a19216d550fa42dd550a150a1921609aa362989300c665c9dcc9c&callback=JSONP_CALLBACK';
-    //   .map((resp:Response)=>resp.json())
-    //   .catch((error:any) =>{return Observable.throw(error);});
-
-
-    // return this.http.post('http://ft.dev.hismith.ru/stat/create/', body , options)
-    //   .map((resp:Response)=>resp.json())
-    //   .catch((error:any) =>{return Observable.throw(error);});
 
     this.jsonp.request(url, { method: 'Get' })
-    // работает
       .subscribe((res) => {
-        this.str = res.json()['response']
-      });
+        this.str = res.json()['response'];
+        this._listNews=res.json()['response'];
+        if(this._listNews!=undefined) {
+          for (let news of this._listNews) {
+            if(news['text']!=undefined) {
+              console.log("-------- " + news['text']);
+              console.log("-------- " + Number(news['likes'].count));
+              // в ответе нет поля extends
+              //console.log("-------- " + news['profiles']);
+              console.log("-------- " + news['date']);
+              let _news = new News(
+                {
+                  id: 2,
+                  liks: Number(news['likes']),
+                  writer:'test',
+                  text: news['text'],
+                  list_photo: ['img.jpg', 'img2.jpg'],
+                  published: (new Date(1000*news['date'])).toLocaleString()
+            });
+              this.addNews(_news);
+            }
 
-    // рабочий
+          }
+        }
+      })
+
+    // запись запроса на сервере
+    // http://ft.dev.hismith.ru/stat/create/
     let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
     const body = JSON.stringify(new Trigger(searchWords));
     let options = new RequestOptions({ headers: headers });
@@ -81,11 +73,6 @@ export class SearchNewsService {
         .subscribe((res) => {
         this.test = res.json()
         });
-        //.map((resp:Response)=>resp.json())
-        //.catch((error:any) =>{return Observable.throw(error);});
-
-  //
-
   }
 
   showNews(id: number): News{

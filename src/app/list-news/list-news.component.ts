@@ -15,8 +15,8 @@ export class ListNewsComponent implements OnInit {
   constructor(private searchNewsService: SearchNewsService) {}
 
 
-  ngOnInit(){
+   ngOnInit(){
       this.listNews = this.searchNewsService.getListNews();
-  }
+   }
 
 }
