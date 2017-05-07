@@ -44,6 +44,7 @@ export class SearchNewsService {
   }
 
   str: Array<TestApi>[];
+  test: Array<Object>[];
   addNews(news: News){
     this.listNews.push(news);
   }
@@ -53,42 +54,37 @@ export class SearchNewsService {
     //this.listNews[0].text=searchWords;
 
     // рабочий запрос!
-    let url:string = 'https://api.vk.com/method/users.get?user_id=210700286&v=5.52&callback=JSONP_CALLBACK';
-    // people: Array<Object>;
-    // let url:string = 'https://api.vk.com/method/users.get?user_id=210700286&v=5.52&callback=JSONP_CALLBACK';
-    // return this.jsonp.request(url, { method: 'Get' }).toRx().subscribe(res => {
-    // this.people = res.json();
-
-
-
-    //.subscribe((res) => {res.json()
-    //});
-    //let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-
+    //let url:string = 'https://api.vk.com/method/users.get?user_id=210700286&v=5.52&callback=JSONP_CALLBACK';
 
     //ошибка - сервер не дает достпа
-    // return this.http.get( 'https://api.vk.com/method/newsfeed.search?q='+searchWords+
-    //                       '&access_token=50a1921650a1921650a19216d550fa42dd550a150a1921609aa362989300c665c9dcc9c').map(res=>res.json())
+    let url:string='https://api.vk.com/method/newsfeed.search?q='+searchWords+
+      '&access_token=50a1921650a1921650a19216d550fa42dd550a150a1921609aa362989300c665c9dcc9c&callback=JSONP_CALLBACK';
     //   .map((resp:Response)=>resp.json())
     //   .catch((error:any) =>{return Observable.throw(error);});
 
-    // let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-    // const body = JSON.stringify(new Trigger(searchWords));
-    // let options = new RequestOptions({ headers: headers });
+
     // return this.http.post('http://ft.dev.hismith.ru/stat/create/', body , options)
     //   .map((resp:Response)=>resp.json())
     //   .catch((error:any) =>{return Observable.throw(error);});
 
-    // рабочий
-    // return this.http.post('https://dubna.tech/test.php', body , { headers: headers })
-    //     .map((resp:Response)=>resp.json())
-    //     .catch((error:any) =>{return Observable.throw(error);});
-
-    return this.jsonp.request(url, { method: 'Get' })
-      // работает
+    this.jsonp.request(url, { method: 'Get' })
+    // работает
       .subscribe((res) => {
-      this.str = res.json()['response']
+        this.str = res.json()['response']
       });
+
+    // рабочий
+    let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
+    const body = JSON.stringify(new Trigger(searchWords));
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('https://dubna.tech/test.php', body , { headers: headers })
+        .subscribe((res) => {
+        this.test = res.json()
+        });
+        //.map((resp:Response)=>resp.json())
+        //.catch((error:any) =>{return Observable.throw(error);});
+
+  //
 
   }
 

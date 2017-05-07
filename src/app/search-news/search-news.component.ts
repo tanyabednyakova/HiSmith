@@ -19,27 +19,18 @@ export class SearchNewsComponent implements OnInit {
   ngOnInit() {
 
   }
+
 searchNews() {
   this.searchNewsService.SearchNews(this.searchWords);//.subscribe((data) => {this.count=data});
-  //let user: TestApi = JSON.parse(this.searchNewsService.str);
-   //console.log(user.id);
-   //console.log(user.first_name);
-  //console.log(user.last_name);
+
   if(this.searchNewsService.str) {
-   this.user=this.searchNewsService.str;
-    // работатает!
+    console.log(this.searchNewsService.test['query']);
+
+    this.user=this.searchNewsService.str;
     for (let entry of this.searchNewsService.str) {
       console.log(entry['id']);
       console.log(entry['first_name']);
     }
-   // console.log(this.searchNewsService.str);
   }
-
-  //console.log(this.searchNewsService);
 }
-
-  // submit(searchWords){
-  //   this.searchNewsService.SearchNews(searchWords);
-  //    // .subscribe((data) => {this.receivedUser=data; this.done=true;});
-  // }
 }

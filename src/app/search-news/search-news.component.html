@@ -8,12 +8,9 @@
   </form>
 </div>
 // TODO показать сообшение, что данный отправлены
-<div *ngIf="user">
-  {{SearchNewsComponent.user}}
   <ul>
     <li *ngFor="let news of user">
       {{news.id}}
       {{news.first_name}}
     </li>
   </ul>
-</div>
