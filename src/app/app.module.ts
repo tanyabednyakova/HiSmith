@@ -22,7 +22,7 @@ const appRoutes: Routes=[
   {path: 'show', component: ListNewsComponent},
   {path: 'news', component: NewsCardComponent}
 
-]
+];
 
 @NgModule({
   declarations: [

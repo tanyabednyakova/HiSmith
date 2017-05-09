@@ -3,14 +3,10 @@
     <div class="form-group">
     <label for="search">Введите слова для поиска</label>
     <input type="text" id="search" class="form-control" [(ngModel)]="searchWords" name="searchWords"><br>
-    <input type="submit" class="btn-secondary btn btn-lg" value="найти" (click)="searchNews(searchWords)">
+    <input type="submit"  routerLink="/show" class="btn-secondary btn btn-lg" value="найти" (click)="dosSearchNews(searchWords)">
     </div>
   </form>
 </div>
-// TODO показать сообшение, что данный отправлены
-  <ul>
-    <li *ngFor="let news of user">
-      {{news.id}}
-      {{news.first_name}}
-    </li>
-  </ul>
+<div *ngIf="message">
+  {{message}}
+</div>

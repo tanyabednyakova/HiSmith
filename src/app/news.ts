@@ -7,6 +7,8 @@ export class News {
   writer: string = '';
   // текст новости
   text: string = '';
+  // текст новости
+  shortText: string = '';
   // список фотографий
   //list_photo: string[];
   // дата публикации

@@ -12,10 +12,13 @@ export class NewsCardComponent implements OnInit {
   constructor(private searchNewsService: SearchNewsService) {}
 
   news: News;
-  //id: number;
 
   ngOnInit() {
-    this.news=this.searchNewsService.showNews(0);
+    this.news=this.searchNewsService.selectedNews;
+  }
+
+  showNwes(id:number){
+
   }
 
 }

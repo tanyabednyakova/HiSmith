@@ -10,27 +10,16 @@ import {TestApi} from "../TestApi";
 })
 export class SearchNewsComponent implements OnInit {
 
-  searchWords="";
-  count: number;
-  user: Array<TestApi>[]=null;
+  public searchWords: string ="";
+
+
   constructor(private searchNewsService: SearchNewsService) { }
 
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-searchNews() {
-  this.searchNewsService.SearchNews(this.searchWords);//.subscribe((data) => {this.count=data});
-
-  if(this.searchNewsService.str) {
-    console.log("add :" + this.searchNewsService.test['id']);
-
-    this.user=this.searchNewsService.str;
-    for (let entry of this.searchNewsService.str) {
-      console.log(entry['id']);
-      console.log(entry['first_name']);
+  dosSearchNews() {
+     this.searchNewsService.searchNews(this.searchWords);
     }
-  }
 }
-}
+// TODO сообщение о результате запроса

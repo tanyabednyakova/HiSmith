@@ -8,25 +8,18 @@
      <th>Дата публикации</th>
      <th>Лайки</th>
    </tr>-->
-   <tr *ngFor="let news of listNews">
-     <td>
-      {{news.id}}
+   <tr *ngFor="let news of listNews" (click)="doSelectNews(news)">
+     <td >
+        автор: {{news.writer}} <br>
+        списко фотографий: {{news.list_photo}}<br>
+        дата публикации: {{news.published}}<br>
+        liks: {{news.liks}}
      </td>
      <td>
-      {{news.writer}}
+       {{news.shortText}}
+       <div class="nav-link" > Подробнее:</div>
      </td>
-     <td>
-       {{news.text}}
-     </td>
-     <td>
-       {{news.list_photo}}
-     </td>
-     <td>
-       {{news.published}}
-     </td>
-     <td>
-      {{news.liks}}
-     </td>
+
    </tr>
  </table>
 
