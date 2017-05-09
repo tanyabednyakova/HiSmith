@@ -13,22 +13,22 @@ export class SearchNewsService {
 
   // списсок новостей, полученный от вконтакте
   listNews: Array<News>=[];
+  // выбранная новость
   public selectedNews: News;
-  _listNews: Array<Object>[];
-  test: Array<Object>[];
 
+  // массив, в который считываются записи из вконтакте
+  _listNews: Array<Object>[];
+
+  // номер записи на сервере
+  count:number;
 
   getListNews(): News[] {
     return this.listNews;
   }
 
-
   showNews(_news: News) {
     this.selectedNews=_news;
   }
-
-
-
 
   addNews(news: News){
     this.listNews.push(news);
@@ -41,6 +41,7 @@ export class SearchNewsService {
       '&access_token=50a1921650a1921650a19216d550fa42dd550a150a1921609aa362989300c665c9dcc9c&callback=JSONP_CALLBACK';
     this.jsonp.request(url, {method: 'Get'})
       .subscribe((res) => {
+        var _news
         this._listNews = res.json()['response'];
         if (this._listNews != undefined && this._listNews.length!=1){
           for (let news of this._listNews) {
@@ -51,14 +52,25 @@ export class SearchNewsService {
               // в ответе нет поля extends
               //console.log("-------- " + news['profiles']);
               console.log("-------- " + news['date']);
-              let _news = new News(
+              let temp:string;
+              let tempbig: string;
+              if(news['attachment']!=undefined && news['attachment']['photo']!= undefined) {
+                console.log("---------" + news['attachment']['photo'].src);
+                temp = news['attachment']['photo'].src_small;
+                tempbig=news['attachment']['photo'].src_big;
+              }
+              else
+                temp="#";
+
+              _news = new News(
                 {
                   id: 2,
                   liks: Number(news['likes'].count),
                   writer: 'test',
                   text: news['text'],
                   shortText: news['text'].substring(0, 100),
-                  list_photo: ['img.jpg', 'img2.jpg'],
+                  urlPhoto_small: temp,
+                  urlPhoto_big: tempbig,
                   published: (new Date(1000 * news['date'])).toLocaleString()
                 });
                 this.addNews(_news);
@@ -70,16 +82,17 @@ export class SearchNewsService {
   }
 
 countRequest(searchWords: string) {
+  // ответ сервера, но котором храняться поисковые запросы
+  let test: Array<Object>[];
   // запись запроса на сервере
   // http://ft.dev.hismith.ru/stat/create/
   let headers = new Headers({'Content-Type': 'application/json;charset=utf-8'});
   const body = JSON.stringify(new Trigger(searchWords));
-  let options = new RequestOptions({headers: headers});
-  return this.http.post('https://dubna.tech/test.php', body, {headers: headers})
+  this.http.post('https://dubna.tech/test.php', body, {headers: headers})
     .subscribe((res) => {
-      this.test = res.json()
+      test = res.json()
     });
+  //this.count=Number(test['query']);
 }
-
 }
 

@@ -7,10 +7,11 @@ export class News {
   writer: string = '';
   // текст новости
   text: string = '';
-  // текст новости
+  // сокрашенный текст новости
   shortText: string = '';
-  // список фотографий
-  //list_photo: string[];
+  // url фотографии
+  urlPhoto_big: string;
+  urlPhoto_small: string;
   // дата публикации
   published: string;
 

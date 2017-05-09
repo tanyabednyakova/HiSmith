@@ -1,13 +1,5 @@
 
  <table class="table table-striped">
-   <!--<tr>
-     <th>№</th>
-     <th>Автор</th>
-     <th>Новость</th>
-     <th>Изображения</th>
-     <th>Дата публикации</th>
-     <th>Лайки</th>
-   </tr>-->
    <tr *ngFor="let news of listNews" (click)="doSelectNews(news)">
      <td >
         автор: {{news.writer}} <br>
@@ -16,10 +8,24 @@
         liks: {{news.liks}}
      </td>
      <td>
+       <img src="{{news.urlPhoto_small}}" data-toggle="modal" data-target="#photo">
+       
+       <div class="modal fade" id="photo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-body">
+               <img src="{{news.urlPhoto_big}}">
+             </div>
+           </div>
+         </div>
+       </div>
+     </td>
+     <td>
        {{news.shortText}}
-       <div class="nav-link" > Подробнее:</div>
+       <div class="nav-link" (click)="doSelectNews(news)" routerLink="/news" > Подробнее:</div>
      </td>
 
    </tr>
  </table>
 
+<!--TODO преобразовать переменные в html-->

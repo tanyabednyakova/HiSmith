@@ -16,9 +16,4 @@ export class NewsCardComponent implements OnInit {
   ngOnInit() {
     this.news=this.searchNewsService.selectedNews;
   }
-
-  showNwes(id:number){
-
-  }
-
 }

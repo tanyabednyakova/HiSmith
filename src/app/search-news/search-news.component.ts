@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchNewsService} from "../search-news.service";
-import {News} from "../news";
-import {TestApi} from "../TestApi";
 
 @Component({
   selector: 'app-search-news',
@@ -23,3 +21,5 @@ export class SearchNewsComponent implements OnInit {
     }
 }
 // TODO сообщение о результате запроса
+// TODO обновлять при повторном запросе
+
