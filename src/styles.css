@@ -1,7 +1,6 @@
-body
-{
-  padding-top: 15rem;
-
+body {
+  padding-top: 12rem;
+  padding-bottom: 6rem;
 }
 
 .main-card{
@@ -9,4 +8,5 @@ body
   box-shadow: 0 1px 10px 1px #3a3c42;
   padding: 5rem;
   margin-bootom:50px;
+  text-align: center;
 }

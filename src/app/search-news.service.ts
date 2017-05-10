@@ -60,13 +60,16 @@ export class SearchNewsService {
                 tempbig=news['attachment']['photo'].src_big;
               }
               else
-                temp="#";
+              {
+                temp=undefined;
+                tempbig=undefined;
+              }
 
               _news = new News(
                 {
                   id: 2,
                   liks: Number(news['likes'].count),
-                  writer: 'test',
+                  writer: 'writer'+ news['from_id'],
                   text: news['text'],
                   shortText: news['text'].substring(0, 100),
                   urlPhoto_small: temp,

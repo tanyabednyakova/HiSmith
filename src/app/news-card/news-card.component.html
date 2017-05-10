@@ -1,17 +1,18 @@
-<div class="card main-card d-flex justify-content-between" *ngIf="news">
-  <div>
+<div class="card main-card" *ngIf="news">
+    <div *ngIf="news.urlPhoto_big">
+      <img src="{{news.urlPhoto_big}}" class="img-thumbnail img-responsive" alt="{{news.writer}}">
+    </div>
+    <div class="card-block">
     Автор новости: {{news.writer}} <br>
     Дата публикации: {{news.publish}} <br>
     количество лайков: {{news.liks}}<br>
+    </div>
+
+  <div class="card-block text">
+    <span [innerHtml]="news.shortText"></span>
   </div>
 
-  <div>
-    {{news.text}}
-  </div>
 
-  <div style="text-align: center">
-    <img src="{{news.urlPhoto_big}}">
-  </div>
 </div>
 
 

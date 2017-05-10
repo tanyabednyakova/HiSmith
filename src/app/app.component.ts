@@ -14,7 +14,6 @@ export class AppComponent {
 
   selectedNews: News;
 
-
   onSelect(news: News): void {
     this.selectedNews = news;
   }
