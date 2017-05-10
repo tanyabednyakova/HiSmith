@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {News} from "./news";
-import {Headers, Http, RequestOptions, Jsonp} from "@angular/http";
-import {Trigger} from "./trigger";
+import {Headers, Http, Jsonp} from "@angular/http";
+import {QueryInfo} from "./queryInfo";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
@@ -20,10 +20,14 @@ export class SearchNewsService {
   _listNews: Array<Object>[];
 
   // номер записи на сервере
-  count:number;
+  public count: Number;
 
   getListNews(): News[] {
     return this.listNews;
+  }
+
+  getCountQuery(): Number{
+    return this.count;
   }
 
   showNews(_news: News) {
@@ -44,6 +48,7 @@ export class SearchNewsService {
         var _news
         this._listNews = res.json()['response'];
         if (this._listNews != undefined && this._listNews.length!=1){
+          this.countRequest(searchWords);
           for (let news of this._listNews) {
             if (news['text'] != undefined) {
 
@@ -79,23 +84,25 @@ export class SearchNewsService {
                 this.addNews(_news);
             }
           }
-          this.countRequest(searchWords);
+
         }
       })
   }
 
 countRequest(searchWords: string) {
   // ответ сервера, но котором храняться поисковые запросы
-  let test: Array<Object>[];
+  let queryInfo: Array<Object>[];
   // запись запроса на сервере
   // http://ft.dev.hismith.ru/stat/create/
   let headers = new Headers({'Content-Type': 'application/json;charset=utf-8'});
-  const body = JSON.stringify(new Trigger(searchWords));
+  const body = JSON.stringify(new QueryInfo(searchWords));
   this.http.post('https://dubna.tech/test.php', body, {headers: headers})
     .subscribe((res) => {
-      test = res.json()
+      queryInfo = res.json();
+      this.count=queryInfo['id'];
+      console.log("---------"+this.count);
     });
-  //this.count=Number(test['query']);
-}
+
+  }
 }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SearchNewsService} from "../search-news.service";
 import {News} from "../news";
-import {NewsCardComponent} from "../news-card/news-card.component";
 
 @Component({
   selector: 'app-list-news',
@@ -11,18 +10,21 @@ import {NewsCardComponent} from "../news-card/news-card.component";
 export class ListNewsComponent implements OnInit {
 
   listNews: News []=[];
+  id: Number;
+
 
   constructor(private searchNewsService: SearchNewsService) {}
 
 
    ngOnInit(){
       this.listNews = this.searchNewsService.getListNews();
+      this.id=this.searchNewsService.getCountQuery();
    }
 
    doSelectNews(_news: News)
    {
      this.searchNewsService.showNews(_news);
-     console.log(_news.text);
+     //console.log(_news.text);
    }
 
 }

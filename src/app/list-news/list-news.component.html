@@ -1,5 +1,6 @@
 
- <table class="table table-striped">
+<div *ngIf="id"> <small> Запрос № {{id}} </small> </div>
+<table class="table table-striped">
    <tr *ngFor="let news of listNews" (click)="doSelectNews(news)">
      <td>
        <p><small>автор:</small> <br>{{news.writer}} </p>
@@ -31,4 +32,3 @@
    </tr>
  </table>
 
-<!--TODO увеличенную картинку уместить в див-->

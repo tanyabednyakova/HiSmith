@@ -1,4 +1,4 @@
-export class Trigger {
+export class QueryInfo {
   query:String;
 
   constructor(v:String)
