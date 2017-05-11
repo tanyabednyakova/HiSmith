@@ -24,7 +24,9 @@ export class ListNewsComponent implements OnInit {
    doSelectNews(_news: News)
    {
      this.searchNewsService.showNews(_news);
-     //console.log(_news.text);
    }
 
+   setId(id: Number){
+     this.id=id;
+   }
 }

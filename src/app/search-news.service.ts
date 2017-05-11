@@ -4,12 +4,15 @@ import {Headers, Http, Jsonp} from "@angular/http";
 import {QueryInfo} from "./queryInfo";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import {Router} from '@angular/router';
+
+
 
 
 @Injectable()
 export class SearchNewsService {
 
-  constructor(private http: Http, private jsonp: Jsonp) { }
+  constructor(private http: Http, private jsonp: Jsonp, private router: Router) { }
 
   // списсок новостей, полученный от вконтакте
   listNews: Array<News>=[];
@@ -45,7 +48,10 @@ export class SearchNewsService {
       '&access_token=50a1921650a1921650a19216d550fa42dd550a150a1921609aa362989300c665c9dcc9c&callback=JSONP_CALLBACK';
     this.jsonp.request(url, {method: 'Get'})
       .subscribe((res) => {
-        var _news
+        this.listNews=[];
+        this._listNews=[];
+        this.count=-1;
+        var _news;
         this._listNews = res.json()['response'];
         if (this._listNews != undefined && this._listNews.length!=1){
           this.countRequest(searchWords);
@@ -84,7 +90,7 @@ export class SearchNewsService {
                 this.addNews(_news);
             }
           }
-
+          this.router.navigate(['/show']);
         }
       })
   }
